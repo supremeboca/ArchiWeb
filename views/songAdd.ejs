@@ -1,0 +1,19 @@
+<h1>Ajouter une musique</h1>
+<form action="/song/new" method="POST">
+    Nom: 
+    <input type="text" name="title" value="<%= title %>"><br>
+    Id:
+    <input type="text" name="songid" value="<%= songid %>" ><br>
+    singer:
+    <input type="text" name="singer" value="<%= singer %>"><br>
+    album:
+    <input type="text" name="nalbum" value="<%= nalbum %>" ><br>
+    cateid:
+    <input type="text" name="cateid" value="<%= cateid %>" ><br>
+    playid:
+    <input type="text" name="playid" value="<%= playid %>" ><br>
+    <input type="submit" name="save" value="Sauver"><br>
+</form>
+<Form action="/song" method="GET">
+    <input type="submit"value="Retour à la liste">
+</Form>

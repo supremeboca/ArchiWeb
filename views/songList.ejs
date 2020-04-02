@@ -1,0 +1,13 @@
+<h1>Mes musiques</h1>
+
+<a href="/song/:playid/add">Ajouter une musique</a>
+<ul> 
+    <% for (let i = 0 ;  i < songs.length ; i++) { %>
+    <li><%= songs[i].title + "-" + songs[i].singer %>
+        <a href="/song/delete/<%= songs[i].songid %>">Effacer</a>
+    </li> 
+    <% } %>
+</ul>
+<Form action="/playlist" method="GET">
+    <input type="submit"value="Retour à la liste">
+</Form>

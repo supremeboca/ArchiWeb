@@ -1,0 +1,10 @@
+<h1>Ajouter une playlist</h1>
+<form action="/playlist/new" method="POST">
+    Nom : 
+    <input type="text" name="name" value="<%= name %>"><br>
+    <input type="text" name="playid" value="<%= playid %>" >
+    <input type="submit" name="save" value="Sauver"><br>
+</form>
+<Form action="/playlist" method="GET">
+    <input type="submit"value="Retour à la liste">
+</Form>
