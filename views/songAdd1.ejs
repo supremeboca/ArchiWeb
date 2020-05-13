@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,38 +15,47 @@
             <a href="/logout" class="nav-item">Deconnection</a>
         </nav> 
 </header>
-<h1 class="center">Ajouter une playlist</h1>
-<div class="fd">
-<h1 class="center">Let's Start</h1>
+<h1 class="center">Modifier une musique</h1>
 <div class="fond">
 
-    <div class="container">
-<table class="table">
+  <div class="container">
+
+    <table class="table">
+      <thead>
+      <tr>
+          <th>Name</th>  
+          <th>Singer</th>
+          <th>Album</th>
+          <!-- <th>Id</th> -->
+          <!-- <th>userid</th> -->
+          <!-- <th>playid</th> -->
+      </tr>
+      </thead>
+
+<form action="/song/new" method="POST">
+<tr>
+  <td data-label="Name"><input type="text" name="title" value="<%= title %>"></td>
   
-        <tr>
-            <th>Nom</th>  
-            
+  <td data-label="Singer"><input type="text" name="singer" value="<%= singer %>"></td>
+  
+  <td data-label="album"><input type="text" name="nalbum" value="<%= nalbum %>" ></td>
 
-        </tr>
+  <td data-label=""><input type="hidden" name="songid" value="<%= songid %>" ></td>
+  
+  <td><input type="hidden" name="userid" value="<%= userid %>" ></td>
 
-<form action="/playlist/new" method="POST">
-    <td><input type="text" name="name" value="<%= name %>"></td>
-    
-    <td><input type="hidden" name="playid" value="<%= playid %>" ></td>
-    
-
-    <td><input type="submit" name="save" value="Sauver"></td><br>
+  <td><input type="hidden" name="playid" value="<%= playid %>" ></td>
+  <td><input type="submit" name="save" value="Sauver"></td><br>
+  </tr>
 </form>
 </table>
 </div>
-
-
 </div>
 <Form action="/playlist" method="GET" class="center">
     <input type="submit"value="Retour à la liste">
 </Form>
-</div>
 
+</div>
 <footer>
     <div class="lienBasDePages"><p>© 2019 Indeque Bocamir All rights reserved</p></div> 
     <div class="lienBasDePage">
@@ -59,17 +67,32 @@
 </body>
 </html>
 <style type="text/css">
-.fd{
-  background: url('/disc1.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-}
 
-
+    /* .fond{
+       background: url("/sn.jpg"); 
+    } */
     h1{
         text-align: center;
     }
-
+    #pHome{
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        /* background-color: black; */
+        
+       
+    }
+    #articlehome{
+        background:url('/dance to exist.jpg'); 
+        background-repeat: no-repeat;
+        color: white;
+        text-align: left;
+        font-size:15px;
+        width: 80%;
+        height: 70%;
+        padding-bottom: 50px;
+        padding-left: 2px;
+    }
     .center{
         margin-top: 50px;
         display: flex;
@@ -85,8 +108,8 @@
       
     }
     body{
-        background: url('/perfect1.jpg');
-        
+        background: url('/perfect.jpg');
+        background-color: burlywood;
     }
     
     header {
@@ -137,6 +160,23 @@
       color: rgba(196, 56, 231, 0.767);
     }
     @media (max-width: 580px) {
+      .table thead {
+display: none;
+}
+  .table tr{
+display: block;
+margin-bottom: 40px;
+}
+.table td {
+display: block;
+text-align: right;
+}
+.table td:before {
+content: attr(data-label);
+float: left;
+font-weight: bold;
+}
+
       .nav {
         overflow: auto;
       }

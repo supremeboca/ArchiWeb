@@ -1,19 +1,215 @@
-<h1>Ajouter une musique</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=divice-width,initial-scale=1.0">
+    <title>playlist</title>
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+</head>
+<body>
+    <header>
+        <nav class="nav"> 
+            <a href="/playlist/add" class="nav-item">New Playlist</a>
+            <a href="/song" class="nav-item">All song</a>
+            <a href="/user" class="nav-item">Mon profil</a>
+            <a href="/logout" class="nav-item">Deconnection</a>
+        </nav>  
+    
+    </header>
+<h1 class="center"><span class="Hcolor">Ajouter une musique</span></h1>
+<div class="fond">
+
+    <div class="container">
+
+      <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>  
+            <th>Singer</th>
+            <th>Album</th>
+            <!-- <th>Id</th> -->
+            <!-- <th>userid</th> -->
+            <!-- <th>playid</th> -->
+        </tr>
+        </thead>
+
 <form action="/song/new" method="POST">
-    Nom: 
-    <input type="text" name="title" value="<%= title %>"><br>
-    Id:
-    <input type="text" name="songid" value="<%= songid %>" ><br>
-    singer:
-    <input type="text" name="singer" value="<%= singer %>"><br>
-    album:
-    <input type="text" name="nalbum" value="<%= nalbum %>" ><br>
-    cateid:
-    <input type="text" name="cateid" value="<%= cateid %>" ><br>
-    playid:
-    <input type="text" name="playid" value="<%= playid %>" ><br>
-    <input type="submit" name="save" value="Sauver"><br>
+  <tr>
+    <td data-label="Name"><input type="text" name="title" value="<%= title %>"></td>
+    
+    <td data-label="Singer"><input type="text" name="singer" value="<%= singer %>"></td>
+    
+    <td data-label="album"><input type="text" name="nalbum" value="<%= nalbum %>" ></td>
+
+    <td data-label=""><input type="hidden" name="songid" value="<%= songid %>" ></td>
+    
+    <td><input type="hidden" name="userid" value="<%= userid %>" ></td>
+  
+    <td><input type="hidden" name="playid" value="<%= playid %>" ></td>
+    <td><input type="submit" name="save" value="Sauver"></td><br>
+    </tr>
 </form>
-<Form action="/song" method="GET">
+</table>
+</div>
+<Form action="/playlist" method="GET" class="center">
     <input type="submit"value="Retour à la liste">
 </Form>
+<section id="pHome">
+
+    <article id="articlehome">
+        <h1>Plus qu'un site, une façon de s'exprimer</h1><br/>
+        <p><spawn class="DMSS">Move on</spawn><br/> Ajoutez vos musique et créez des playlists unique<br/>La musique est la meilleur façon de communiquer<br/>Let's Play</p><br/>
+    </article> 
+    
+        
+</section>
+</div>
+<footer>
+    <div class="lienBasDePages"><p>© 2019 Indeque Bocamir All rights reserved</p></div> 
+    <div class="lienBasDePage">
+            <a href="" target="_blank"><img src="" alt="logo Facebook"/></a>
+            <a href="" target="_blank"><img src="" alt="logo Youtube"/></a>
+    </div>
+                   
+</footer>      
+
+</body>
+
+</html>
+<style type="text/css">
+.table{
+  background-color: white;
+}
+.Hcolor{
+    color: #B388EB;
+}
+
+/* .fond{
+   background: url("/sn.jpg"); 
+} */
+h1{
+    text-align: center;
+}
+#pHome{
+    margin-top: 20px;
+	display: flex;
+    justify-content: center;
+	/* background-color: black; */
+	
+   
+}
+#articlehome{
+	background:url('/dance to exist.jpg'); 
+	background-repeat: no-repeat;
+	color: white;
+	text-align: left;
+	font-size:15px;
+    width: 80%;
+    height: 70%;
+    padding-bottom: 50px;
+    padding-left: 2px;
+}
+.center{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  align-items: center;
+}
+.container {
+    
+  display:flex;
+  justify-content: center;
+  align-items: center;
+ 
+ 
+  
+}
+body{
+    background: url('/perfect2.jpg');
+    
+}
+
+header {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+.nav {
+  display: inline-flex;
+  /* position: relative; */
+  overflow: hidden;
+  max-width: 100%;
+  background-color: #fff;
+  padding: 0 20px;
+  border-radius: 40px;
+  box-shadow: 0 10px 40px rgba(159, 162, 177, 0.8);
+}
+.nav-item {
+  color: #0865F1;
+  padding: 20px;
+  text-decoration: none;
+  transition: 0.3s;
+  margin: 0 6px;
+  z-index: 1;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  position: relative;
+}
+.nav-item:before {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: #dfe2ea;
+  border-radius: 8px 8px 0 0;
+  opacity: 0;
+  transition: 0.3s;
+}
+.nav-item:not(.is-active):hover:before {
+  opacity: 1;
+  bottom: 0;
+}
+.nav-item:not(.is-active):hover {
+  color: rgba(196, 56, 231, 0.767);
+}
+
+footer{
+	display: flex;
+	justify-content: space-between;
+	background-color: black;
+	width:99%;
+	position: absolute; bottom: 0;
+	color: white;font-size:13px;
+}
+@media (max-width: 580px) {
+  .table thead {
+display: none;
+}
+  .table tr{
+display: block;
+margin-bottom: 40px;
+}
+.table td {
+display: block;
+text-align: right;
+}
+.table td:before {
+content: attr(data-label);
+float: left;
+font-weight: bold;
+}
+
+  .nav {
+    overflow: auto;
+  }
+  body{
+    background: url('/perfect1.jpg');
+    
+}
+}
+
+</style>

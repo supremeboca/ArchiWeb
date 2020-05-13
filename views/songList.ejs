@@ -1,13 +1,264 @@
-<h1>Mes musiques</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=divice-width,initial-scale=1.0">
+    <title>playlist</title>
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+</head>
+<body>
+    <header>
+        <nav class="nav"> 
+            <a href="/playlist/add" class="nav-item">New Playlist</a>
+            <a href="/song" class="nav-item">All song</a>
+            <a href="/user" class="nav-item">Mon profil</a>
+            <a href="/logout" class="nav-item">Deconnection</a>
+        </nav>  
+    
+    </header>
+    <h1 class="center">Mes musiques</h1>
+    <div>
+        
+        <ul class="list">         
 
-<a href="/song/:playid/add">Ajouter une musique</a>
-<ul> 
-    <% for (let i = 0 ;  i < songs.length ; i++) { %>
-    <li><%= songs[i].title + "-" + songs[i].singer %>
-        <a href="/song/delete/<%= songs[i].songid %>">Effacer</a>
-    </li> 
-    <% } %>
-</ul>
-<Form action="/playlist" method="GET">
-    <input type="submit"value="Retour à la liste">
-</Form>
+            <% for (let i = 0 ;  i < songs.length ; i++) { %>
+            <li>
+            <div class="disc">
+            <div class="container">   
+               <div class="name-button"> <%= songs[i].title + "-" + songs[i].singer %></div>
+            </div>
+            </div>
+            <div class="container2">
+                <a href="/song/update/<%= songs[i].songid %>">Modifier</a> 
+                <a href="/song/delete/<%= songs[i].songid %>">Effacer</a>
+            </div>    
+            </li> 
+            <% } %>
+        </ul>
+        
+        </div>
+        <Form action="/playlist" method="GET" class="center">
+            <input type="submit"value="Retour à la liste">
+        </Form>
+<footer>
+    <div class="lienBasDePages"><p>© 2019 Indeque Bocamir All rights reserved</p></div> 
+    <div class="lienBasDePage">
+            <a href="https://www.facebook.com/worldlinebelgiquebusiness/" target="_blank"><img src="facebook2.png" alt="logo Facebook"/></a>
+            <a href="https://www.youtube.com/user/WorldlineGlobal" target="_blank"><img src="youtube.png" alt="logo Youtube"/></a>
+    </div>
+                   
+</footer>
+</body>
+</html>
+<style type="text/css">
+.center{
+    justify-content: center;
+}
+.Hcolor{
+    color: #B388EB;
+}
+.container {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+ 
+  
+}
+.container2 {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+ background-color: #FFF;
+  
+}
+h3{
+    justify-content: center;
+    align-items: center;
+}
+
+.bb {
+  z-index: 99;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+  background: linear-gradient(45deg, #B388EB, #8093F1);
+  border-radius: 20px;
+  color: #FFF;
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-weight: 200;
+}
+body {
+    background: url('/perfect2.jpg');  
+    font-family: Georgia, "Times New Roman",
+    Times, serif;
+        
+    background-color: #5f5f4c }
+h1 {
+    font-family: Helvetica,Arial, sans-serif 
+    }
+.headlines{
+    text-align: center;
+    font-size: 26px;
+    margin-top:50px;
+}
+.list{
+    
+    justify-content: space-around;
+    display: flex;
+    list-style-type: none;   
+    top: 30%; 
+    
+    
+} 
+.bouton{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.name-button {  
+
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  
+    border: 6px solid transparent;
+    border-image: linear-gradient(to right, #0865F1 0%, #C704F6 100%);
+    border-image-slice: 1;
+  
+    background: #fff;
+    color: #000;
+    /* font-size: 2em; */
+    padding: 10px 40px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.name-button:hover {
+    background-color: white;
+    background: linear-gradient(to right, #0865F1, #C704F6);
+    color: #fff;
+}
+
+
+.disc{
+    /* background: url(unnamed2.jpg);
+    border: 5px white solid; */
+	width: 8em;
+	height: 8em;
+	padding: 5px;
+	position: relative;
+	/* filter: grayscale(100%);
+	transition: 0.2s; */
+    margin-top: 50px;
+
+}
+.disc:hover{
+    filter: grayscale(0);
+}
+
+footer{
+	display: flex;
+	justify-content: space-between;
+	background-color: black;
+	width:99%;
+	position: absolute; bottom: 0;
+	color: white;font-size:13px;
+}
+.center{
+    text-align: center;
+  display: flex;
+  /* height: 100vh; */
+  margin-top: 50px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;  
+}
+header {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+.nav {
+  display: inline-flex;
+  /* position: relative; */
+  overflow: hidden;
+  max-width: 100%;
+  background-color: #fff;
+  padding: 0 20px;
+  border-radius: 40px;
+  box-shadow: 0 10px 40px rgba(159, 162, 177, 0.8);
+}
+.nav-item {
+  color: #0865F1;
+  padding: 20px;
+  text-decoration: none;
+  transition: 0.3s;
+  margin: 0 6px;
+  z-index: 1;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  position: relative;
+}
+.nav-item:before {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: #dfe2ea;
+  border-radius: 8px 8px 0 0;
+  opacity: 0;
+  transition: 0.3s;
+}
+.nav-item:not(.is-active):hover:before {
+  opacity: 1;
+  bottom: 0;
+}
+.nav-item:not(.is-active):hover {
+  color: rgba(196, 56, 231, 0.767);
+}
+@media (max-width: 580px) {
+  .nav {
+    overflow: auto;
+  }
+  .list{
+    display: inline-block;
+    list-style-type: none; 
+    
+    /* justify-content: center;
+    align-items: center; */
+    margin-left:55px;    
+} 
+.container {
+  /* display:flex; */
+  margin: 0 auto;
+    width: 100px; 
+  justify-content: center;
+  align-items: center;
+ 
+  
+}
+footer{
+	display: flex;
+	justify-content: space-between;
+	background-color: black;
+	width:99%;
+	position:sticky; bottom:0;
+	color: white;font-size:13px;
+}
+}
+    </style>
+    
+<!-- // j'ai ajouter un playid apres song ici et dans les routes, j'ai aussi ajouté play id dans la table song et comme deuxieme cle -->
