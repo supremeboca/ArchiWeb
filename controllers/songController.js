@@ -20,11 +20,11 @@ let songList = []
 exports.songList = function (request, response) {   
     let playid = request.params.playid; 
     // connection.query("SELECT * from playlist where playid = ?", playid,function (error,song){
-    connection.query("SELECT * from song where playid = ?",playid ,function (error, resultSQL) {
+    connection.query("SELECT * from song where playid = ?",playid,function (error, resultSQL) {
         if (error)  {
             response.status(400).send(error);        
         }
-        else {
+        else { 
             response.status(200);
             songList = resultSQL;
             console.log( songList);
@@ -57,27 +57,15 @@ exports.songNew =  function(request, response) {
     let title = request.body.title;
     let singer = request.body.singer;
     let nalbum = request.body.nalbum;
-    let cateid = "1";
+    let userid = request.session.userid;
     let playid = request.body.playid;
 
 
     // modify an existing one
 
-   if( songid <= songid.length )
+   if( songid == -1 )
     {
-        let song = new Song(title,songid,singer,nalbum,cateid,playid);
-        console.log(song);
-        connection.query("UPDATE song SET ? WHERE songid = ?", [song, request.body.songid], function (error, resultSQL) {
-            if(error) {
-            response.status(400).send(error);
-            }
-            else{
-                response.status(202).redirect('/song');
-            }
-        });
-    } 
-    else { 
-        let song = new Song(title,songid,singer,nalbum,cateid,playid);
+        let song = new Song(title,singer,nalbum,userid,playid);
         connection.query("INSERT INTO song set ?", song, function (error, resultSQL) {
                     console.log(resultSQL)
                     console.log("error" + error)
@@ -88,6 +76,18 @@ exports.songNew =  function(request, response) {
                         response.status(201).redirect('/song');
                     }
                 });
+    } 
+    else if(songid >= 0) { 
+        let song = new Song(title,singer,nalbum,userid,playid);
+        console.log(song);
+        connection.query("UPDATE song SET ? WHERE songid = ?", [song, request.body.songid], function (error, resultSQL) {
+            if(error) {
+            response.status(400).send(error);
+            }
+            else{
+                response.status(202).redirect('/song');
+            }
+        });
     }
        
     
@@ -96,7 +96,7 @@ exports.songNew =  function(request, response) {
 
 
 exports.songFormAdd = function(request, response) {
-    response.render('songAdd.ejs', {songid:songList.length + 1,title:"",singer:"",nalbum:"",cateid:"",playid:""});
+    response.render('songAdd.ejs', {songid:"-1",title:"",singer:"",nalbum:"",userid:"",playid:request.params.playid});
 }
 
 exports.songFormUpdate =function (request, response) {
@@ -109,7 +109,7 @@ exports.songFormUpdate =function (request, response) {
         else {
             response.status(200);
             songs = resultSQL;
-            response.render('songAdd.ejs', {songid:songid,title:songs[0].title,singer:songs[0].singer,nalbum:songs[0].nalbum,cateid:"1",playid:songs[0].playid});
+            response.render('songAdd1.ejs', {songid:songid,title:songs[0].title,singer:songs[0].singer,nalbum:songs[0].nalbum,userid:"1",playid:songs[0].playid});
         }
     });
 }
