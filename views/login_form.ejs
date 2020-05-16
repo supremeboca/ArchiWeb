@@ -12,15 +12,15 @@
         <div class="form">
         <h2>Sign in</h2>
 
-
+<!-- Le formulaire a remplir -->
 <form action="/login" method="POST">
-    <div class="input-group input-group-lg">
-        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+    <div class="input-group">
+        
 
     <input type="text" name="Email" class="form-control" value="" placeholder="Your Email" >
 </div>
-<div class="input-group input-group-lg">
-    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+<div class="input-group">
+    
     <input type="password" class="form-control" name="Password" value="" placeholder="Your password">
 </div>
     <button type="submit" class="float">login</button>
@@ -49,20 +49,13 @@ html {
   background-size: cover;
 }
 body {
-    /* width: 50%;
-    justify-content: center; */
+ 
   background: transparent;
 }
 body, input, button {
   font-family: 'Source Sans Pro', sans-serif;
 }
-/* .form{
-/* margin-top: 150px;
-border: 3px solid rgb(84, 180, 97);
-background-color: aliceblue; */
-    /* height: 200px;
-  width: 110%; */
-/* } */ 
+
 .login {
   padding: 15px;
   width: 400px;
@@ -88,15 +81,13 @@ background-color: aliceblue; */
 .login form .input-group:last-of-type {
   border-top: none;
 }
+/* rend transparant les span */
 .login form .input-group span {
   background: transparent;
   min-width: 53px;
   border: none;
 }
-.login form .input-group span i {
-  font-size: 1.5em;
-  color: rgba(255, 255, 255, 0.2);
-}
+
 .login form input.form-control {
   display: block;
   width: auto;
@@ -142,11 +133,12 @@ background-color: aliceblue; */
   transform: translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
+/* lorsque l'on passe au dessu/cliques dessus */
 .float:hover, .float:focus, .float:active {
   -webkit-transform: translateY(-3px);
   transform: translateY(-3px);
 }
-/* Large Devices, Wide Screens */
+/* Large Devices, Wide Screens en fonction du type d'ecran  */
 @media only screen and (max-width: 1200px) {
   .login {
     width: 600px;
