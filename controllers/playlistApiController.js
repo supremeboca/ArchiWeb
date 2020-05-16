@@ -5,7 +5,7 @@ let playList = []
 
 exports.playList = function (request, response) {   
     let userid = request.params.userid; 
-    
+    // afficher des playlist specifique en fonction du user id
     connection.query("SELECT * from playlist where userid = ?",userid ,function (error, resultSQL) {
         if (error)  {
             response.status(400).json({'message':error});        
@@ -19,7 +19,7 @@ exports.playList = function (request, response) {
     // })
 });
 }
-// List of playlists
+// afficher toutes les playlists
 exports.playlistList = function (request, response) {    
     connection.query("Select * from playlist", function (error, resultSQL) {
         if (error)  {
@@ -42,7 +42,7 @@ exports.playlistNew =  function(request, response) {
     let userid = request.body.userid;
 
 
-    // modify an existing one
+    // ajouter une nouvelle playlist 
 
  
         let playlist = new Playlist(name,userid);
@@ -62,7 +62,7 @@ exports.playlistNew =  function(request, response) {
     console.log(playlistList);
 }
 
-// Send form to update playlist
+// update playlist
 exports.playlistUpdate =  function(request, response) {
     let playid = request.params.playid;
     let name =  request.body.name;
@@ -84,7 +84,7 @@ exports.playlistUpdate =  function(request, response) {
 
 
 }
-
+// supprimer une playlist 
 exports.playlistRemove = function (request, response) {
     let sql = "DELETE FROM `playlist` WHERE `playlist`.`playid` = ?";
     connection.query( sql , [request.params.playid], (error, resultSQL) => {

@@ -27,7 +27,9 @@ exports.playlistNew =  function(request, response) {
     let userid = request.session.userid;
 
 
-    // modify an existing one
+    // En fonction du fait que l'on ajoute une nouvelle playlist ou que l'on clique pour update
+    // l'id est une constante de -1 ou est recuperé dans le params 
+    // si -1 nouveau si Existant update
 
    if( playid == -1 )
 { 
@@ -59,12 +61,12 @@ exports.playlistNew =  function(request, response) {
     console.log(playlistList);
 }
 
-// Send form to update playlist
+// unfo envoyer pour le form de nouvelle playlist
 exports.playlistFormAdd = function(request, response) {
     response.render('playlistAdd.ejs', {playid:"-1",name:"",userid:request.params.userid});
 }
 
-// Send playlist form update
+// info envoyé pour le form de l'update
 exports.playlistFormUpdate =function (request, response) {
     let playid = request.params.playid;
 
@@ -79,7 +81,7 @@ exports.playlistFormUpdate =function (request, response) {
         }
     });
 }
-
+// pour supprimer 
 exports.playlistRemove = function (request, response) {
     let sql = "DELETE FROM `playlist` WHERE `playlist`.`playid` = ?";
     connection.query( sql , [request.params.playid], (error, resultSQL) => {

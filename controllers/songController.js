@@ -1,25 +1,10 @@
 let Song = require('../models/songModel');
 let connection = require('../db');
 let songList = []
-// List of songs
-// exports.songList = function (request, response) {   
-//     let playid = request.params.playid; 
-//     connection.query("Select * from `song` JOIN `playlist` ON `song`.`playid` = `playlist`.`playid`",playid ,function (error, resultSQL) {
-//         if (error)  {
-//             response.status(400).send(error);        
-//         }
-//         else {
-//             response.status(200);
-//             songList = resultSQL;
-//             console.log( songList);
-//             response.render('songList.ejs', {songs:songList});
-//         }
-//     });
-// }
+
 //voir les musiques de la playlist
 exports.songList = function (request, response) {   
     let playid = request.params.playid; 
-    // connection.query("SELECT * from playlist where playid = ?", playid,function (error,song){
     connection.query("SELECT * from song where playid = ?",playid,function (error, resultSQL) {
         if (error)  {
             response.status(400).send(error);        
@@ -36,7 +21,7 @@ exports.songList = function (request, response) {
 // voir toutes les musiques 
 exports.songAllList = function (request, response) {   
     let playid = request.params.playid; 
-    // connection.query("SELECT * from playlist where playid = ?", playid,function (error,song){
+
     connection.query("SELECT * from song",playid ,function (error, resultSQL) {
         if (error)  {
             response.status(400).send(error);        
@@ -60,9 +45,10 @@ exports.songNew =  function(request, response) {
     let userid = request.session.userid;
     let playid = request.body.playid;
 
-
-    // modify an existing one
-
+    // En fonction du fait que l'on ajoute une nouvelle playlist ou que l'on clique pour update
+    // l'id est une constante de -1 ou est recuperé dans le params 
+    // si -1 nouveau si Existant update
+    
    if( songid == -1 )
     {
         let song = new Song(title,singer,nalbum,userid,playid);
@@ -94,11 +80,11 @@ exports.songNew =  function(request, response) {
     console.log(songList);
 }
 
-
+// info envoyer pour le form de new song
 exports.songFormAdd = function(request, response) {
     response.render('songAdd.ejs', {songid:"-1",title:"",singer:"",nalbum:"",userid:"",playid:request.params.playid});
 }
-
+// info envoyer pour l'update( recuperation du params)
 exports.songFormUpdate =function (request, response) {
     let songid = request.params.songid;
     

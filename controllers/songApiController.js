@@ -46,7 +46,7 @@ exports.songNew =  function(request, response) {
     let playid = request.body.playid;
 
 
-    // modify an existing one
+
 
     
         let song = new Song(title,singer,nalbum,userid,playid);
@@ -67,7 +67,7 @@ exports.songNew =  function(request, response) {
 
 
 
-
+// modifier un song
 exports.songUpdate =function (request, response) {
     let songid = request.params.songid;
     let title = request.body.title;
@@ -90,7 +90,7 @@ exports.songUpdate =function (request, response) {
         }
     });
 }
-
+// supprimer 
 exports.songRemove = function (request, response) {
     let sql = "DELETE FROM `song` WHERE `song`.`songid` = ?";
     connection.query( sql , [request.params.songid], (error, resultSQL) => {

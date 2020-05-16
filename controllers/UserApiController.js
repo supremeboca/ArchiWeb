@@ -20,7 +20,7 @@ exports.userList = function (request, response) {
 });
 }
 
-
+// ajouter un nouvelle utilisateur 
 exports.userNew =  function(request, response) {
     
 
@@ -30,7 +30,7 @@ exports.userNew =  function(request, response) {
     let Email = request.body.Email;
     let Password = request.body.Password;
 
-    // modify an existing one
+   
 
  
         let user = new User(name,Firstname,Email,Password);
@@ -50,7 +50,7 @@ exports.userNew =  function(request, response) {
     console.log(userList);
 }
 
-// Send form to update playlist
+// pour updater un utilisateur existant 
 exports.userUpdate =  function(request, response) {
     let userid = request.params.userid;
     let name =  request.body.name;
@@ -63,7 +63,7 @@ exports.userUpdate =  function(request, response) {
     connection.query("UPDATE user SET ? WHERE userid = ?", [user, userid], function (error, resultSQL) {
         if(error) {
             response.status(400).json({'message': error});  
-        } else if (resultSQL.affectedRows != 1) {// je devrais peut etre le modifier en <= playid
+        } else if (resultSQL.affectedRows != 1) {
             console.log(resultSQL.affectedRows);
             response.status(400).json({'message': "Erreur SQL "});  
         }

@@ -5,7 +5,7 @@ let userList = []
 
 
 
-// List of users
+// afficher un utilisateur spéecifique via son userid
 exports.userList = function (request, response) {    
     connection.query("Select * from user where userid = ?",request.session.userid, function (error, resultSQL) {//le modifier pour afficher que le user
         if (error)  {
@@ -32,7 +32,9 @@ exports.userNew =  function(request, response) {
     
 
 
-    // modify an existing one
+    // En fonction du fait que l'on ajoute une nouvelle playlist ou que l'on clique pour update
+    // l'id est une constante de -1 ou est recuperé dans le params 
+    // si -1 nouveau si Existant update
 
     if( userid == -1 )
     {
@@ -66,12 +68,12 @@ exports.userNew =  function(request, response) {
     console.log(userList);
 }
 
-// Send form to update user
+// info pour le form the register
 exports.userFormAdd = function(request, response) {
     response.render('register.ejs', {userid:"-1",name:"",Firstname:"",Password:"",Email:""});
 }
 
-// Send user form update
+// info pour le form de l'update avec le params 
 exports.userFormUpdate =function (request, response) {
     let userid = request.session.userid;
 
@@ -105,22 +107,21 @@ exports.userRemove = function (request, response) {
  
  exports.loginForm = function(req, response) {
      let Email = "";
-    //  let Password ="";
+
      if (req.cookies && req.cookies.Email)
      Email = req.cookies.Email;
-    //  Password = req.cookies.Password;
+
     response.render('login_form.ejs', {Email: Email});
 }
 
+// des qu'il existe un session cette fonction la detruit et envoie "logout success"
 exports.logout = function (req, res) {
-    // Email = req.cookies.Email;
-    // userid = req.session.userid;
+ 
     if (req.session.userid
-        //  && req.cookies.Email
         ){
     req.session.destroy()
     res.clearCookie();
-    res.send("Logout success! ");
+    res.send("Logout success! Revenez-nous vite");
     }
 }
 
