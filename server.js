@@ -25,6 +25,7 @@ app.use(session({
     })
 );
 
+// Cette partie permet de verifier si l'utilisateurs existe dans la DB et qu'il y a bien un match entre les info( Email et pass) 
 app.post('/login', (req,res) => {
     var Email = req.body.Email;
     var Password = req.body.Password;
